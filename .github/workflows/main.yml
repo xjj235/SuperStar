@@ -25,4 +25,4 @@ jobs:
           
       
       - name: Run main.py
-        run: python main.py -u 15228929449 -p 283523Hbr. -l 26 #课程id，默认为心理课的
+        run: python main.py -u 15228929449 -p 283523Hbr. # 不指定课程ID则处理全部课程（每个课程全部重新跑）
