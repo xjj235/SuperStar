@@ -322,17 +322,12 @@ def process_course(chaoxing, course, notopen_action, speed):
 def filter_courses(all_course, course_list):
     """过滤要学习的课程"""
     if not course_list:
-        # 手动输入要学习的课程ID列表
-        print("*" * 10 + "课程列表" + "*" * 10)
-        for course in all_course:
-            print(f"ID: {course['courseId']} 课程名: {course['title']}")
-        print("*" * 28)
-        try:
-            course_list = input(
-                "请输入想要学习的课程列表,以逗号分隔,例: 2151141,189191,198198\n"
-            ).split(",")
-        except Exception as e:
-            raise InputFormatError("输入格式错误") from e
+        # 未指定课程ID时(CI 等无交互环境无法输入), 直接处理所有课程
+        logger.info(
+            f"未指定课程ID, 处理全部课程, 共 {len(all_course)} 门: "
+            f"{[c['title'] for c in all_course]}"
+        )
+        return all_course
 
     # 筛选需要学习的课程
     course_task = []
