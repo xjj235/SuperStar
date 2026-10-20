@@ -235,8 +235,8 @@ def process_chapter(chaoxing, course, point, RB, notopen_action, speed, auto_ski
     logger.info(f'当前章节: {point["title"]}')
     
     if point["has_finished"]:
-        logger.info(f'章节：{point["title"]} 已完成所有任务点')
-        return 1, auto_skip_notopen  # 继续下一章节
+        # 按要求: 即使章节已完成也重新完整进入处理, 不再跳过
+        logger.info(f'章节：{point["title"]} 已完成所有任务点, 按要求重新完整进入处理')
     
     # 随机等待，避免请求过快
     sleep_duration = random.uniform(1, 3)
